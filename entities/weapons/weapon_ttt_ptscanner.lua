@@ -237,7 +237,8 @@ if CLIENT then
 			elseif results == "Innocent" then
 				draw.SimpleText(results, GLOBAL.HUDFont, x, y + 100, COLOR_GREEN, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
 			end
-			draw.SimpleText("< Recharging >", TabLarge, x, y + 110, COLOR_ORANGE, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+    else if results == "None" then
+        draw.SimpleText("< Recharging >", TabLarge, x, y + 120, COLOR_ORANGE, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
 		end
 
 
