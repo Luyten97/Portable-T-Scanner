@@ -7,7 +7,6 @@ GLOBAL = {}
 GLOBAL.AmountOfUses         = 44						-- Set to -1 if you want infinite uses.
 GLOBAL.LimitedStock         = true						-- Limit to one time purchase in detective credit store.
 GLOBAL.AllowDrop			= true						-- Allow players to drop the weapon.
-GLOBAL.DropOnDeath			= false						-- Drop the weapon on death.
 
 GLOBAL.Cooldown             = 5							-- Delay between scans. Don't go lower than 5.
 GLOBAL.FreezeDuration       = 3							-- Duration of the freeze.
@@ -107,7 +106,7 @@ end
 
 -- If DropOnDeath is false then we will remove the entity
 function SWEP:OnDrop()
-	if !GLOBAL.DropOnDeath then
+	if !GLOBAL.AllowDrop then
 		self:Remove()
 	end
 end	
@@ -233,11 +232,12 @@ if CLIENT then
 
 		if results != "None" then
 			if results == "Traitor" then
-				draw.SimpleText(results, GLOBAL.HUDFont, x, y + 100, COLOR_RED, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				draw.SimpleText(results, GLOBAL.HUDFont, x, y * 1.25, COLOR_RED, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+				draw.SimpleText("< Recharging >", TabLarge, x, (y * 1.25) + 10, COLOR_ORANGE, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
 			elseif results == "Innocent" then
-				draw.SimpleText(results, GLOBAL.HUDFont, x, y + 100, COLOR_GREEN, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+				draw.SimpleText(results, GLOBAL.HUDFont, x, y * 1.25, COLOR_GREEN, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
+				draw.SimpleText("< Recharging >", TabLarge, x, (y * 1.25) + 10, COLOR_ORANGE, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
 			end
-        draw.SimpleText("< Recharging >", TabLarge, x, y + 120, COLOR_ORANGE, TEXT_ALIGN_CENTER, TEXT_ALIGN_BOTTOM)
 		end
 
 
